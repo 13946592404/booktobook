@@ -1,0 +1,202 @@
+/*字体*/
+/* @font-face {
+    font-family: x1;
+    src: url("../fonts/FZShenYMXSJW.TTF");
+} */
+@font-face {
+    font-family: k1; /*楷书*/
+    src: url("../fonts/FZFWZhuZiAOldMinchoL.TTF");
+}
+
+/*Vue伪类*/
+[v-cloak]{
+    display: none;
+}
+
+/*主体布局*/
+body{
+    background-color: black;
+}
+.mycontainer{
+    position: relative;
+    width: 1280px;
+    height: 570px;
+    background-color: black;
+    z-index: 1;
+    font-family: k1;
+}
+.myheader{
+    position: inherit;
+    width: 100%;
+    height: 3%;
+    z-index: 3; /*JS失效*/
+}
+.mysection{
+    position: inherit;
+    width: 100%;
+    height: 92%;
+    background-image: url("../images/background1.jpg");
+    z-index: 2;
+}
+.myfooter{
+    position: inherit;
+    width: 100%;
+    height: 5%;
+    top: -3%;
+    background-color: black;
+    color: #edfffa;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    z-index: 3;
+    font-size: 20px;
+}
+
+/*上部导航栏*/
+.mybuy{ /*购物车图标*/
+    margin-right: 30px;
+    margin-top: 5px;
+    color: #cccccc;
+    background-color: inherit;
+}
+.mybuy:hover{
+    color: white;
+}
+.myhead{ /*头像*/
+    width: 35px;
+    height: 35px;
+    margin: -20px;
+    border-radius: 50%;
+    border-width: 0;
+    padding: 0;
+}
+.myhead:hover{
+    opacity: 0.8;
+}
+.mydropdown{ /*个人信息下拉菜单*/
+    background-color: black;
+}
+.mydropdown>li>a{
+    color: #cccccc;
+}
+
+/*中部巨幕*/
+.myarticle{
+    position: relative;
+    width: 1020px;
+    height: 440px;
+    /*margin: auto;*/
+    font-size: larger;
+    text-align: center;
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+.myarticle::-webkit-scrollbar{
+    display: none;
+}
+.mybookshow{
+    position: relative;
+    top: 70px;
+    left: 230px;
+}
+
+/*书籍展示*/
+.bookimage{
+    position: relative;
+    float: left;
+    width: 200px;
+    height: 300px;
+    /*background-color: #0f0f0f;*/
+    /*padding: 20px;*/
+    margin: 30px;
+    margin-bottom: 20px;
+}
+.bookimage>img{
+    max-width: 200px;
+    max-height: 250px;
+}
+.myinfotext{
+    position: absolute;
+    bottom: -18px;
+    right: 120px;
+    color: red;
+    font-weight: bold;
+}
+.myinfobtn{
+    position: absolute;
+    right: 40px;
+    bottom: -10px;
+}
+
+.myarticle>h1{
+    /* font-family: x1; */
+    font-size: 50px;
+}
+.mybutton{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+.mybutton>button{
+    margin-left: 50px;
+}
+.myform-control{
+    display: inline;
+    width: 80%;
+    /*margin-left: 10%;*/
+    /*margin-top: 12%;*/
+}
+
+/*书籍详情*/
+.mybookinfo{
+    position: relative;
+    top: 50px;
+    left: 190px;
+    text-align: left;
+    float: left;
+}
+.mybookinfoimage{
+    position: absolute;
+    left: 30px;
+}
+.mybookinfoback{
+    position: inherit;
+    top: 0;
+    left: 650px;
+    background-color: transparent;
+    border-color: black;
+    border-style: groove;
+    border-radius: 3px 20%;
+}
+.mybookinfoname{
+    position: inherit;
+    left: 400px;
+    top: 10px;
+    width: 400px;
+    text-align: center;
+    font-size: 25px;
+}
+.mybookinfoprice{
+    position: inherit;
+    left: 480px;
+    top: 17px;
+    color: red;
+    font-weight: bold;
+    font-size: 35px;
+}
+.mybookinfobuy{
+    position: inherit;
+    left: 520px;
+    top: 10px;
+}
+.mybookinfoinformation{
+    position: inherit;
+    left: 400px;
+    top: 30px;
+    width: 400px;
+}
+.myowner{
+    position: absolute;
+    left: 800px;
+    top: 300px;
+}

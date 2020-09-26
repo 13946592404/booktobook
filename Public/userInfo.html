@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>B2B：在线二手书交易</title>
+    <!--自定义图标-->
+    <link rel="icon" href="./images/book.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--库-->
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./lib/animate.css-main/animate.css">
+    <!--自定义CSS-->
+    <link rel="stylesheet" type="text/css" href="./css/userInfo.css">
+</head>
+
+<body>
+<div class="mycontainer" v-cloak>
+    <header class="myheader">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="user_id == null || user_id == 'undefined' ? './register.html' : './index.html?__glt=' + hideUserId(user_id)">B2B</a> <!--@click="inHome"-->
+                    <ul class="nav navbar-nav">
+                        <li class=""><a :href="user_id == null || user_id == 'undefi    q55ned' ? './register.html' : './index.html?__glt=' + hideUserId(user_id)">Home<span class="sr-only">(current)</span></a></li>
+                        <li class=""><a :href="user_id == null || user_id == 'undefined' ? '#' : './searchResult.html?__glt=' + hideUserId(user_id)">Search</a></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" v-show="!(user_id==null || user_id==undefined)">
+                                <img class="myhead" src="images/1.jpg" width="35px" height="35px">
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Center<span class="caret"></span></a>
+                            <ul class="dropdown-menu mydropdown">
+                                <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=1&__glt=' + hideUserId(user_id)">我上架的书</a></li>
+                                <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=2&__glt=' + hideUserId(user_id)">我拥有的书</a></li>
+                                <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=3&__glt=' + hideUserId(user_id)">我的购买订单</a></li>
+                                <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=4&__glt=' + hideUserId(user_id)">我的出售订单</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : '#'">个人信息</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="mysection">
+        <article class="myarticle">
+            <div class="mybtn">
+                <button class="btn btn-lg btn-danger" @click="logout()">注销登录</button>
+                <button class="btn btn-lg btn-info" @click="alter()" :disabled="check==1">修改密码</button>
+                <button class="btn btn-lg btn-success" @click="book()" :disabled="check==2">上传书籍</button>
+            </div>
+        </article>
+        <article class="myuser">
+            <ul v-show="check==1" class="animate__animated animate__backInLeft">
+                    <li><input type="password" placeholder="new password" v-model="newpassword"></li>
+                    <li><button class="btn btn-sm btn-success" :disabled="!/^[\w]{6,16}$/.test(newpassword)" @click="updatePassword()">提交</button></li>
+            </ul>
+            <ul class="myuserul2" v-show="check==2" class="animate__animated animate__backInLeft">
+                <li>书籍名称：<input type="text" placeholder="name" v-model="book_name"></li>
+                <li>书籍价格：<input type="text" placeholder="price" v-model="book_price"></li>
+                <li>详细信息：<textarea rows="6" cols="20" placeholder="information" v-model="book_information"></textarea></li>
+                <li><button class="btn btn-sm btn-success" :disabled="insertBookTest" @click="insertBook()">添加</button></li>
+            </ul>
+        </article>
+    </section>
+    <footer class="myfooter">
+        <aside>
+            <p><!--copyright @ zhm--></p>
+        </aside>
+    </footer>
+</div>
+<!--库-->
+<script src="./lib/jquery-3.5.1/jquery-3.5.1.js"></script>
+<script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="./lib/vue.js/vue.js"></script>
+<!--自定义JS-->
+<script src="./js/userInfo.js"></script>
+</body>
+</html>

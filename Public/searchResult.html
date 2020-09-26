@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>B2B：在线搜索</title>
+    <!--自定义图标-->
+    <link rel="icon" href="./images/book.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--库-->
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./lib/animate.css-main/animate.css">
+    <!--自定义CSS-->
+    <link rel="stylesheet" type="text/css" href="./css/searchResult.css">
+</head>
+
+<body>
+    <div class="mycontainer" v-cloak>
+        <header class="myheader">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" :href="user_id == null || user_id == 'undefined' ? './register.html' : './index.html?__glt=' + hideUserId(user_id)" target="_self">B2B</a>
+                        <ul class="nav navbar-nav">
+                            <li class=""><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './index.html?__glt=' + hideUserId(user_id)" target="_self">Home<span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="#" target="_self">Search</a></li>
+                        </ul>
+                        <div class="navbar-form navbar-left"> <!-- action="searchResult.html" method="post"-->
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search what you want" v-model="searchWord">
+                            </div>
+                            <button class="btn btn-default" @click="searchWord=''"> <!--type="submit" formaction="searchResult.html" formmethod="post"-->
+                                <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+                                <span>Clear</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <!--<li>
+                                <button type="submit" class="btn btn-lg mybuy">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                </button>
+                            </li>-->
+                            <li>
+                                <a href="#" v-show="!(user_id==null || user_id==undefined)">
+                                    <img class="myhead" src="images/1.jpg" width="35px" height="35px">
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Center<span class="caret"></span></a>
+                                <ul class="dropdown-menu mydropdown">
+                                    <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=1&__glt=' + hideUserId(user_id)">我上架的书</a></li>
+                                    <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=2&__glt=' + hideUserId(user_id)">我拥有的书</a></li>
+                                    <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=3&__glt=' + hideUserId(user_id)">我的购买订单</a></li>
+                                    <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userCenter.html?page=4&__glt=' + hideUserId(user_id)">我的出售订单</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a :href="user_id == null || user_id == 'undefined' ? './register.html' : './userInfo.html?&__glt=' + hideUserId(user_id)">个人信息</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section class="mysection">
+            <article class="myarticle">
+                <!--搜索结果--> 
+                <div v-show="flag" class="animate__animated animate__backInRight">
+                    <div class="mybookshow">
+                        <div class="bookimage" v-for="item in books" :key="item.id">
+                            <img :src="item.image | imageURL" alt="bookimage" width="200px" height="250px">
+                            <p>{{item.name | moreWord}}</p>
+                            <p class="myinfotext">{{item.price}}￥</p>
+                            <button class="btn btn-sm btn-info myinfobtn" @click="CheckMoreInformation(item.id)">查看详情</button>
+                        </div>
+                        <div v-if='books.length == 0' v-html="searchNone"></div>
+                    </div>
+                </div>
+                <!--书籍信息-->
+                <div v-if="!flag" class="animate__animated animate__backInLeft">
+                    <div class="mybookinfo">
+                        <img class="mybookinfoimage" :src="selectBookObj.image | imageURL" alt="bookimage" width="300px" height="375px">
+                        <button class="btn btn-lg mybookinfoback" @click='flag=true'>>>>退出</button>
+                        <p class="mybookinfoname">{{selectBookObj.name}}</p>
+                        <span class="mybookinfoprice">{{selectBookObj.price}}￥</span>
+                        <button class="btn btn-lg btn-success mybookinfobuy" :disabled="selectBookObj.user_id == user_id" @click="insertTrade(selectBookObj.id)">购买</button>
+                        <p class="mybookinfoinformation">{{selectBookObj.information | moreInfo}}</p>
+                        <!--<p class="myowner">拥有者：xx</p>-->
+                    </div>
+                </div>
+            </article>
+        </section>
+        <footer class="myfooter">
+            <aside>
+                <p><!--copyright @ zhm--></p>
+            </aside>
+        </footer>
+    </div>
+    <!--库-->
+    <script src="./lib/jquery-3.5.1/jquery-3.5.1.js"></script>
+    <script src="./lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="./lib/vue.js/vue.js"></script>
+    <!--自定义JS-->
+    <script src="./js/searchResult.js"></script>
+</body>
+</html>
