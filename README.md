@@ -11,6 +11,7 @@ UI采用Bootstrap一部分样式，使用了animate.css库的一部分动画
 JS使用vue.js简单地进行数据绑定与渲染
 2、后端
 使用node.js实现基本数据库增删改查和GET/POST请求的处理和响应
+前后端交互使用AJAX
 3、数据库
 使用MySql数据库
 
